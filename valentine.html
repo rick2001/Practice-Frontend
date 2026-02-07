@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For My Kuppi 💗</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+:root {
+  --bg1:#fde2f3;
+  --bg2:#e8dcff;
+  --card:rgba(255,255,255,.92);
+  --primary:#ff4f8b;
+  --primary-soft:#ff9ac1;
+  --text:#4a1d33;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  font-family:system-ui,-apple-system,sans-serif;
+  overflow:hidden;
+  padding:18px;
+}
+
+body::after{
+  content:"💖 ✨ 💕 ✨ 💖";
+  position:fixed;
+  inset:0;
+  font-size:28px;
+  opacity:.14;
+  animation:drift 22s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes drift{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-100vh)}
+}
+
+#confettiCanvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:10;
+}
+
+/* ===== SIDE PHOTOS ===== */
+.side-photo{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%) scale(.9);
+  width:260px;
+  opacity:0;
+  transition:all .8s ease;
+  pointer-events:none;
+  z-index:2;
+}
+
+.side-photo img{
+  width:100%;
+  border-radius:26px;
+  box-shadow:
+    0 28px 70px rgba(255,79,139,.35),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+}
+
+.left-photo{left:4%}
+.right-photo{right:4%}
+
+.side-photo.show{
+  opacity:1;
+  transform:translateY(-50%) scale(1);
+}
+
+/* ===== CARD ===== */
+.card{
+  width:min(720px,92vw);
+  padding:34px 26px;
+  background:var(--card);
+  border-radius:32px;
+  text-align:center;
+  box-shadow:
+    0 30px 80px rgba(255,79,139,.25),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+  backdrop-filter:blur(14px);
+  animation:appear .8s ease;
+  z-index:5;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(30px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+
+.art{
+  width:240px;
+  margin:0 auto 12px;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));
+}
+
+h1{
+  font-size:clamp(26px,4vw,44px);
+  color:var(--text);
+  margin:10px 0 6px;
+}
+
+.subtitle{
+  font-size:15px;
+  opacity:.8;
+  margin-bottom:22px;
+}
+
+.button-zone{
+  position:relative;
+  width:min(520px,95%);
+  height:160px;
+  margin:0 auto;
+}
+
+button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  padding:16px 30px;
+  font-size:18px;
+  font-weight:800;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+}
+
+#yesBtn{
+  left:18%;
+  background:linear-gradient(135deg,var(--primary),var(--primary-soft));
+  color:#fff;
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:translateY(-50%) scale(1)}
+  50%{transform:translateY(-50%) scale(1.1)}
+}
+
+#noBtn{
+  left:62%;
+  background:#f1f1f5;
+  color:#333;
+}
+
+.hint{
+  font-size:13px;
+  opacity:.65;
+  margin-top:10px;
+}
+
+.result{
+  display:none;
+  margin-top:24px;
+  animation:pop .45s ease;
+}
+
+@keyframes pop{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.result h2{
+  font-size:clamp(28px,4.5vw,46px);
+  margin-bottom:8px;
+}
+
+.love{
+  font-size:16px;
+  line-height:1.6;
+  opacity:.85;
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .side-photo{
+    position:static;
+    transform:none;
+    width:220px;
+    margin:14px auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- SIDE IMAGES -->
+<div class="side-photo left-photo">
+  <img src="img1.jpg" alt="Us together">
+</div>
+
+<div class="side-photo right-photo">
+  <img src="img2.jpg" alt="Smiles together">
+</div>
+
+<main class="card">
+  <svg class="art" viewBox="0 0 200 180">
+    <path d="M100 28 C130 -4 200 20 200 76
+             C200 138 100 170 100 170
+             C100 170 0 138 0 76
+             C0 20 70 -4 100 28Z" fill="#ff6fae"/>
+    <circle cx="80" cy="90" r="6"/>
+    <circle cx="120" cy="90" r="6"/>
+    <path d="M78 110 Q100 126 122 110"
+          stroke="#fff" stroke-width="4" fill="none"/>
+  </svg>
+
+  <h1>Cutu, will you be my Valentine? 🤭💗</h1>
+  <div class="subtitle">
+    Somehow, you make life feel gentler, happier, and more beautiful 💖🌸
+  </div>
+
+  <section class="button-zone" id="zone">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+  </section>
+
+  <div class="hint" id="hint">
+    My Golu Molu Cutu Kuppi 🐼💕
+  </div>
+
+  <section class="result" id="result">
+    <h2>Tutung Tutung 🤭💞</h2>
+    <div class="love">
+      Your smile is the most precious thing to me, my Kuppi ❤️<br>
+      Jokhon ei oi tor haashi ta dekhi cutu, everything instantly feels lighter.<br>
+      I may not be perfect, but if there’s one thing I promise to always do right,<br>
+      it’s to go any distance, face anything, just to keep that smile exactly the way it is 🫂
+    </div>
+  </section>
+</main>
+
+<script>
+const zone=document.getElementById("zone");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const result=document.getElementById("result");
+const hint=document.getElementById("hint");
+const canvas=document.getElementById("confettiCanvas");
+
+function resize(){
+  const dpr=devicePixelRatio||1;
+  canvas.width=innerWidth*dpr;
+  canvas.height=innerHeight*dpr;
+}
+resize();
+addEventListener("resize",resize);
+
+const confettiFx=confetti.create(canvas,{resize:false});
+
+function celebrate(){
+  confettiFx({
+    particleCount:300,
+    spread:160,
+    startVelocity:55,
+    origin:{y:.6}
+  });
+}
+
+let scale=1;
+function moveNo(){
+  const z=zone.getBoundingClientRect();
+  const b=noBtn.getBoundingClientRect();
+  noBtn.style.left=Math.random()*(z.width-b.width)+"px";
+  noBtn.style.top=Math.random()*(z.height-b.height)+"px";
+  scale=Math.min(2.3,scale+.1);
+  yesBtn.style.transform=`translateY(-50%) scale(${scale})`;
+}
+
+zone.addEventListener("pointermove",moveNo);
+noBtn.addEventListener("click",e=>e.preventDefault());
+
+yesBtn.addEventListener("click",()=>{
+  zone.style.display="none";
+  hint.style.display="none";
+  result.style.display="block";
+
+  document.querySelector(".left-photo").classList.add("show");
+  document.querySelector(".right-photo").classList.add("show");
+
+  celebrate();
+});
+</script>
+
+</body>
+</html>
